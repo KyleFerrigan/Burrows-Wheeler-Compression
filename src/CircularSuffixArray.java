@@ -1,6 +1,8 @@
 public class CircularSuffixArray {
     // circular suffix array of s
-    public CircularSuffixArray(String s)
+    public CircularSuffixArray(String s){
+
+    }
     // length of s
     public int length(){
 
