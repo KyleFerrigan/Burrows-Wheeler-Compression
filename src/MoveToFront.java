@@ -65,6 +65,10 @@ public class MoveToFront {
     // if args[0] is "-", apply move-to-front encoding
 // if args[0] is "+", apply move-to-front decoding
     public static void main(String[] args){
-
+        if (args == null) throw new java.lang.IllegalArgumentException("args is null");
+        String word = args[0];
+        if (word.equals("+")){ decode(); }
+        else if (word.equals("-")){ encode(); }
+        else throw new java.lang.IllegalArgumentException("word = " + word);
     }
 }
