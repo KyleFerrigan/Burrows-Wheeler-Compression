@@ -67,8 +67,15 @@ public class MoveToFront {
     public static void main(String[] args){
         if (args == null) throw new java.lang.IllegalArgumentException("args is null");
         String word = args[0];
-        if (word.equals("+")){ decode(); }
-        else if (word.equals("-")){ encode(); }
-        else throw new java.lang.IllegalArgumentException("word = " + word);
+        switch (word) {
+            case "-":
+                encode();
+                break;
+            case "+":
+                decode();
+                break;
+            default:
+                throw new java.lang.IllegalArgumentException("word = " + word);
+        }
     }
 }
