@@ -1,14 +1,47 @@
-import java.util.ArrayList;
+import java.util.Arrays;
 
 public class CircularSuffixArray {
-    String csa = null;
-    ArrayList csaIndex;
+    private int[] index;
+    private String csa;
+
+    private class Node implements Comparable<Node> {
+        private int index;
+
+        public Node(int indexIn) {
+            index = indexIn;
+        }
+
+        public int getIndex() {
+            return index;
+        }
+
+        @Override
+        public int compareTo(Node arg) {
+            int j = arg.getIndex();
+            for (int i=0; i<length(); i++) {
+                int pos1 = (i + index + length()) % length();
+                int pos2 = (i + j + length()) % length();
+                if (csa.charAt(pos1) != csa.charAt(pos2))
+                    return csa.charAt(pos1) - csa.charAt(pos2);
+            }
+            return 0;
+        }
+
+    }
 
     // circular suffix array of s
     public CircularSuffixArray(String s) {
-        if (s == null) throw new java.lang.IllegalArgumentException(s + " is null");
+        index = new int[s.length()];
         csa = s;
-        csaIndex = new ArrayList();
+        Node[] suffix = new Node[s.length()];
+        for (int i=0; i<suffix.length; i++) {
+            suffix[i] = new Node(i);
+        }
+
+        Arrays.sort(suffix);
+        for (int i = 0; i< index.length; i++) {
+            index[i] = suffix[i].getIndex();
+        }
     }
     // length of s
     public int length(){
@@ -16,7 +49,7 @@ public class CircularSuffixArray {
     }
     // returns index of ith sorted suffix
     public int index(int i){
-        return -1; //todo change
+        return index[i]; //todo change
     }
     // unit testing (required)
     public static void main(String[] args){
