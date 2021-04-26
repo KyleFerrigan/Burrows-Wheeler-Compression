@@ -4,9 +4,11 @@ public class CircularSuffixArray {
     String csa = null;
     ArrayList csaIndex;
 
+
     // circular suffix array of s
     public CircularSuffixArray(String s) {
         csa = s;
+        csaIndex = new ArrayList();
     }
     // length of s
     public int length(){
