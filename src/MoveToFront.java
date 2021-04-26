@@ -36,26 +36,23 @@ public class MoveToFront {
 
     // apply move-to-front decoding, reading from stdin and writing to stdout
     public static void decode(){
-        // create an array, converting the char values into int (ASCII) values
-        char[] chAr = new char[ascii];
-        for (char i = 0; i < ascii; i++){
-            chAr[i] = i;
+        //    	initialization
+        char[] pos = new char[256];
+        for (int i=0; i<pos.length; i++) pos[i] = (char)i;
+        while (BinaryStdIn.isEmpty() == false) {
+            char c = BinaryStdIn.readChar();
+//    		char r = pos[c];
+            BinaryStdOut.write(pos[c]);
+//    		StdOut.print(r);
+            char tmp = pos[c];
+//    		simulate the process of move to front
+            for (int i=c; i>0; i--) pos[i] = pos[i-1];
+            pos[0] = tmp;
         }
-        // Read in each char value and write it to the array
-        // Tracks the position of the char value and updates the array accordingly
-        while (!BinaryStdIn.isEmpty()){
-            char val = BinaryStdIn.readChar();
-            BinaryStdOut.write(chAr[val], 8);
-            char pos = chAr[val];
-            while (val > 0){
-                chAr[val] = chAr[--val];
-            }
-            chAr[0] = pos;
-        }
-        // No longer using BinaryStd, close so we no longer write to it
-        BinaryStdIn.close();
+        BinaryStdOut.flush();
         BinaryStdOut.close();
-    }
+        return;
+    } // end method decode
     
     // if args[0] is "-", apply move-to-front encoding
     // if args[0] is "+", apply move-to-front decoding

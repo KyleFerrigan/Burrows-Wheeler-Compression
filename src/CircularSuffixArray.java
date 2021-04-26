@@ -1,11 +1,16 @@
-public class CircularSuffixArray {
-    // circular suffix array of s
-    public CircularSuffixArray(String s){
+import java.util.ArrayList;
 
+public class CircularSuffixArray {
+    String csa = null;
+    ArrayList csaIndex;
+
+    // circular suffix array of s
+    public CircularSuffixArray(String s) {
+        csa = s;
     }
     // length of s
     public int length(){
-        return -1;//todo change
+        return csa.length();
     }
     // returns index of ith sorted suffix
     public int index(int i){
