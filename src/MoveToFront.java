@@ -28,7 +28,8 @@ public class MoveToFront {
             BinaryStdOut.write(count);
             chAr[0] = ch;
         }
-        // No longer using BinaryStdOut, close so we no longer write to it
+        // No longer using BinaryStd, close so we no longer write to it
+        BinaryStdIn.close();
         BinaryStdOut.close();
     }
 
@@ -39,31 +40,24 @@ public class MoveToFront {
         for (char i = 0; i < ascii; i++){
             chAr[i] = i;
         }
-        // Read in each char value and assign it a new char value
+        // Read in each char value and write it to the array
+        // Tracks the position of the char value and updates the array accordingly
         while (!BinaryStdIn.isEmpty()){
-            int intIn = BinaryStdIn.readInt();
-            char out;
-            char count;
-            char in;
-
-            //Manipulates chAr list to move current char to front
-            // Duplicates should be read in as 0, otherwise find its position and assign its value (0, 1, 2, etc.)
-            for (count = 0, out = chAr[0]; intIn != chAr[count]; count++) {
-                in = chAr[count];
-                chAr[count] = out;
-                out = in;
+            char val = BinaryStdIn.readChar();
+            BinaryStdOut.write(chAr[val], 8);
+            char pos = chAr[val];
+            while (val > 0){
+                chAr[val] = chAr[--val];
             }
-
-            // Once we find the value, update the array and write the count to char
-            chAr[count] = out;
-            BinaryStdOut.write((char)count);
-            chAr[0] = (char)intIn;
+            chAr[0] = pos;
         }
-        // No longer using BinaryStdOut, close so we no longer write to it
+        // No longer using BinaryStd, close so we no longer write to it
+        BinaryStdIn.close();
         BinaryStdOut.close();
     }
+    
     // if args[0] is "-", apply move-to-front encoding
-// if args[0] is "+", apply move-to-front decoding
+    // if args[0] is "+", apply move-to-front decoding
     public static void main(String[] args){
         if (args == null) throw new java.lang.IllegalArgumentException("args is null");
         String word = args[0];
