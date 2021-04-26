@@ -4,7 +4,6 @@ public class CircularSuffixArray {
     String csa = null;
     ArrayList csaIndex;
 
-
     // circular suffix array of s
     public CircularSuffixArray(String s) {
         csa = s;
