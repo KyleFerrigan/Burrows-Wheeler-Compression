@@ -6,6 +6,7 @@ public class CircularSuffixArray {
 
     // circular suffix array of s
     public CircularSuffixArray(String s) {
+        if (s == null) throw new java.lang.IllegalArgumentException(s + " is null");
         csa = s;
         csaIndex = new ArrayList();
     }
