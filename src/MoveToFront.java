@@ -25,6 +25,7 @@ public class MoveToFront {
             }
             // Once we find the value, update the array and write the count to char
             chAr[count] = out;
+            System.out.println((int)count);//todo remove
             BinaryStdOut.write(count);
             chAr[0] = ch;
         }
