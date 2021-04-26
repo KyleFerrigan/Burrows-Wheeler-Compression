@@ -26,7 +26,6 @@ public class CircularSuffixArray {
             }
             return 0;
         }
-
     }
 
     // circular suffix array of s
