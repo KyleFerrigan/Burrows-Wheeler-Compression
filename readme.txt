@@ -1,11 +1,11 @@
 /* *****************************************************************************
- *  Name:      
- *  NetID:    
+ *  Name: Kyle Ferrigan     
+ *  NetID: kbferrigan   
  *
- *  Partner Name:     N/A
- *  Partner NetID:    N/A
+ *  Partner Name: Patrick Galati
+ *  Partner NetID: pagalati
  *
- *  Hours to complete assignment (optional):
+ *  Hours to complete assignment (optional): 10 hours each
  *
  **************************************************************************** */
 
