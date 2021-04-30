@@ -41,29 +41,29 @@ public class BurrowsWheeler {
 
 
     private static String parse(int origin,char[] unorderedData,char[] orderedData){
-        int count = 0;
-        int count2 = 0;
+        int orderedcount = 0;
+        int unorderedcount = 0;
         String result = null;
         System.out.println("Origin: " +  origin);
+
+        result = Character.toString(orderedData[origin]);
 
         //count how many chars deep the current letter is
         for (int i = 0; i <= origin; i++){
             if (orderedData[origin] == orderedData[i]) {
-                count++;
-                System.out.println("Count incremented to: " + count);
+                orderedcount++;
+                System.out.println("Count incremented to: " + orderedcount);
             }
         }
 
         //count that many chars down in unordered list to find the next char
         for (int i = 0; i < unorderedData.length; i++){
             if (orderedData[origin] == unorderedData[i]) {
-                count2++;
-                System.out.println("Count2 incremented to: " + count2);
+                unorderedcount++;
+                System.out.println("Count2 incremented to: " + unorderedcount);
             }
 
-            if (count2 == count){//if at correct location for next char
-
-                result = Character.toString(orderedData[i]);
+            if (unorderedcount == orderedcount){//if at correct location for next char
                 if (origin != 0){
                     System.out.println("called parse");
                     result += parse(i,unorderedData,orderedData);
@@ -71,11 +71,8 @@ public class BurrowsWheeler {
                 System.out.println("Result: "+ result);
                 break;
             }
-
-
         }
         return result;
-
     }
 
     // apply Burrows-Wheeler inverse transform,
