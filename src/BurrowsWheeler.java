@@ -40,7 +40,7 @@ public class BurrowsWheeler {
     }
 
 
-    private static String parse(int origin,char[] unorderedData,char[] orderedData){
+    private static String parse(int origin,char[] unorderedData,char[] orderedData, int deep){
         int orderedcount = 0;
         int unorderedcount = 0;
         String result = null;
@@ -64,9 +64,10 @@ public class BurrowsWheeler {
             }
 
             if (unorderedcount == orderedcount){//if at correct location for next char
-                if (origin != 0){
+                if (deep < unorderedData.length){
                     System.out.println("called parse");
-                    result += parse(i,unorderedData,orderedData);
+                    deep++;
+                    result += parse(i,unorderedData,orderedData,deep);
                 }
                 System.out.println("Result: "+ result);
                 break;
@@ -89,7 +90,7 @@ public class BurrowsWheeler {
         System.out.println("Sorted: "+orderedData);
 
 
-        String result = parse(origin,unorderedData,orderedData);
+        String result = parse(origin,unorderedData,orderedData,1);
         System.out.println("Result: " + result);
 
         /*// Update the count
