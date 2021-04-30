@@ -2,6 +2,8 @@ public class BurrowsWheeler {
     // apply Burrows-Wheeler transform,
 // reading from standard input and writing to standard output
     public static void transform(){
+        String strIn = BinaryStdIn.readString();
+        CircularSuffixArray csa = new CircularSuffixArray(strIn);
 
     }
     // apply Burrows-Wheeler inverse transform,
