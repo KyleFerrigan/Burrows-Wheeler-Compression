@@ -56,7 +56,8 @@ public class BurrowsWheeler {
         int deep = 0;
         String result = "";
         int curOrigin = origin;
-        while(deep<unorderedData.length) {
+        int dataLength = unorderedData.length;
+        while(deep<dataLength) {
 
             int orderedcount = 0;
             int unorderedcount = 0;
@@ -83,6 +84,7 @@ public class BurrowsWheeler {
                     if (deep < unorderedData.length) {
                         //System.out.println("called parse");
                         deep++;
+                        System.out.println("Current Decode Progress: " + deep +" / " + dataLength);
                         curOrigin = i;
                     }
                     //System.out.println("Result: "+ result);
