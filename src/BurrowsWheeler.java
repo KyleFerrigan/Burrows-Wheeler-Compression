@@ -2,14 +2,17 @@ public class BurrowsWheeler {
     private static int index;
     private static int origin;
     private static int prev;
+    private static int next;
     // apply Burrows-Wheeler transform,
     // reading from standard input and writing to standard output
     public static void transform(){
         String s = BinaryStdIn.readString();
+        //System.out.println(s);//todo remove
         CircularSuffixArray csa = new CircularSuffixArray(s);
         origin = -1;
         // We need to be able to append to a string. Stringbuilder lets us do that
         StringBuilder sb = new StringBuilder();
+
         // Iterate through the Circular Suffix Array
         for (int i = 0; i < s.length(); i++){
             index = csa.index(i);
@@ -25,21 +28,26 @@ public class BurrowsWheeler {
             // Append the last character accordingly
             sb.append(s.charAt(prev));
         } // end of for loop
+
         // Write the index of the original Circular Suffix Array to standard out
-        BinaryStdOut.write(origin);
+        BinaryStdOut.write((int)origin);
         // Write the last index from the Circular Suffix Array to standard out
         BinaryStdOut.write(sb.toString());
         // No longer using BinaryStd, close so we no longer write to it
         BinaryStdOut.close();
     }
+
     // apply Burrows-Wheeler inverse transform,
-// reading from standard input and writing to standard output
+    // reading from standard input and writing to standard output
     public static void inverseTransform(){
-
+        int origin = BinaryStdIn.readInt();
+        String s = BinaryStdIn.readString();
+        CircularSuffixArray csa = new CircularSuffixArray(s);
     }
-    // if args[0] is "-", apply Burrows-Wheeler transform
-// if args[0] is "+", apply Burrows-Wheeler inverse transform
-    public static void main(String[] args){
 
+    // if args[0] is "-", apply Burrows-Wheeler transform
+    // if args[0] is "+", apply Burrows-Wheeler inverse transform
+    public static void main(String[] args){
+        transform();
     }
 }
