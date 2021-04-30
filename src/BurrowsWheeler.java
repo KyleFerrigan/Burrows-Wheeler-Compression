@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class BurrowsWheeler {
     private static int index;
     private static int origin;
@@ -43,15 +45,24 @@ public class BurrowsWheeler {
         origin = BinaryStdIn.readInt();
         int[] count = new int[ascii+1];
         String s = BinaryStdIn.readString();
+
+        System.out.println(s);
+        char[] orderedData = s.toCharArray();
+        System.out.println(orderedData);
+        Arrays.sort(orderedData);
+        System.out.println(orderedData);
+
         // Iterate through the array, incrementing the count for each character
         for (int i = 0; i < s.length(); i++){
             char c = s.charAt(i);
             count[c+1]++;
         }
+
         // Update the count
         for (int j = 0; j < ascii; j++){
             count[j+1] += count[ascii];
         }
+
         // Copy into a sorted array, while also keeping track of the next traversal
         char[] temp = new char[s.length()];
         int[] next = new int[s.length()];
@@ -61,12 +72,16 @@ public class BurrowsWheeler {
             next[count[cc]] = k;
             count[cc]++;
         }
+
         // Rebuild the original string from the int[] next array
         int first = origin;
+        System.out.println("Origin Equals: " + first);
+        System.out.print("Decoded Data: ");
         for (int l = 0; l < s.length(); l++){
             BinaryStdOut.write(temp[first]);
             first = next[first];
         }
+
         // No longer using BinaryStd, close so we no longer write to it
         BinaryStdOut.close();
     }
