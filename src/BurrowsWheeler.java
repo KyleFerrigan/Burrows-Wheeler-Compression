@@ -39,26 +39,63 @@ public class BurrowsWheeler {
         BinaryStdOut.close();
     }
 
+
+    private static String parse(int origin,char[] unorderedData,char[] orderedData){
+        int count = 0;
+        int count2 = 0;
+        String result = null;
+        System.out.println("Origin: " +  origin);
+
+        //count how many chars deep the current letter is
+        for (int i = 0; i <= origin; i++){
+            if (orderedData[origin] == orderedData[i]) {
+                count++;
+                System.out.println("Count incremented to: " + count);
+            }
+        }
+
+        //count that many chars down in unordered list to find the next char
+        for (int i = 0; i < unorderedData.length; i++){
+            if (orderedData[origin] == unorderedData[i]) {
+                count2++;
+                System.out.println("Count2 incremented to: " + count2);
+            }
+
+            if (count2 == count){//if at correct location for next char
+
+                result = Character.toString(orderedData[i]);
+                if (origin != 0){
+                    System.out.println("called parse");
+                    result += parse(i,unorderedData,orderedData);
+                }
+                System.out.println("Result: "+ result);
+                break;
+            }
+
+
+        }
+        return result;
+
+    }
+
     // apply Burrows-Wheeler inverse transform,
     // reading from standard input and writing to standard output
     public static void inverseTransform(){
         origin = BinaryStdIn.readInt();
-        int[] count = new int[ascii+1];
+
         String s = BinaryStdIn.readString();
 
-        System.out.println(s);
+        char[] unorderedData = s.toCharArray();
         char[] orderedData = s.toCharArray();
-        System.out.println(orderedData);
+        System.out.println("Unsorted: "+unorderedData);
         Arrays.sort(orderedData);
-        System.out.println(orderedData);
+        System.out.println("Sorted: "+orderedData);
 
-        // Iterate through the array, incrementing the count for each character
-        for (int i = 0; i < s.length(); i++){
-            char c = s.charAt(i);
-            count[c+1]++;
-        }
 
-        // Update the count
+        String result = parse(origin,unorderedData,orderedData);
+        System.out.println("Result: " + result);
+
+        /*// Update the count
         for (int j = 0; j < ascii; j++){
             count[j+1] += count[ascii];
         }
@@ -83,7 +120,7 @@ public class BurrowsWheeler {
         }
 
         // No longer using BinaryStd, close so we no longer write to it
-        BinaryStdOut.close();
+        BinaryStdOut.close();*/
     }
 
     // if args[0] is "-", apply Burrows-Wheeler transform
