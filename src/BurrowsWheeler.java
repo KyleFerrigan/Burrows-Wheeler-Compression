@@ -92,33 +92,6 @@ public class BurrowsWheeler {
 
         String result = parse(origin,unorderedData,orderedData,1);
         System.out.println("Result: " + result);
-
-        /*// Update the count
-        for (int j = 0; j < ascii; j++){
-            count[j+1] += count[ascii];
-        }
-
-        // Copy into a sorted array, while also keeping track of the next traversal
-        char[] temp = new char[s.length()];
-        int[] next = new int[s.length()];
-        for (int k = 0; k < s.length(); k++){
-            char cc = s.charAt(k);
-            temp[count[cc]] = cc;
-            next[count[cc]] = k;
-            count[cc]++;
-        }
-
-        // Rebuild the original string from the int[] next array
-        int first = origin;
-        System.out.println("Origin Equals: " + first);
-        System.out.print("Decoded Data: ");
-        for (int l = 0; l < s.length(); l++){
-            BinaryStdOut.write(temp[first]);
-            first = next[first];
-        }
-
-        // No longer using BinaryStd, close so we no longer write to it
-        BinaryStdOut.close();*/
     }
 
     // if args[0] is "-", apply Burrows-Wheeler transform
