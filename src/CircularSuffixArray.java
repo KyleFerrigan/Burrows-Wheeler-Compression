@@ -1,30 +1,30 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class CircularSuffixArray {
     private int[] index;
+
     private String csa;
 
     private class Node implements Comparable<Node> {
         private int index;
-
         public Node(int indexIn) {
             index = indexIn;
         }
-
         public int getIndex() {
             return index;
         }
 
         @Override
-        public int compareTo(Node arg) {
-            int j = arg.getIndex();
+        public int compareTo(Node nodeIn) {
+            int j = nodeIn.getIndex();
             for (int i=0; i<length(); i++) {
                 int pos1 = (i + index + length()) % length();
                 int pos2 = (i + j + length()) % length();
                 if (csa.charAt(pos1) != csa.charAt(pos2))
                     return csa.charAt(pos1) - csa.charAt(pos2);
             }
-            return 0;
+            return -1;
         }
     }
 
@@ -42,7 +42,7 @@ public class CircularSuffixArray {
             index[i] = suffix[i].getIndex();
         }
     }
-    // length of s
+    // length of csa
     public int length(){
         return csa.length();
     }
