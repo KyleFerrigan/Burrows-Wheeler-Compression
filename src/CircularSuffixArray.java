@@ -1,9 +1,10 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class CircularSuffixArray {
     private int length; // length of the string
     private Integer[] index; // array of characters
-    
+    private ArrayList lastCharArry;
     // circular suffix array of s
     public CircularSuffixArray(String s){
         if (s == null) throw new java.lang.IllegalArgumentException(s + " is null");

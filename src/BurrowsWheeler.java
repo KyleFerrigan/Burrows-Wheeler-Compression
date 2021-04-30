@@ -4,6 +4,16 @@ public class BurrowsWheeler {
     public static void transform(){
         String strIn = BinaryStdIn.readString();
         CircularSuffixArray csa = new CircularSuffixArray(strIn);
+        //csa.index(csa.length());
+        int origin;
+
+        for (int i = 0; i < csa.length(); i++){
+            if (csa.index(i) == 0){
+                origin = i;
+                break;
+            }
+        }
+
 
     }
     // apply Burrows-Wheeler inverse transform,
