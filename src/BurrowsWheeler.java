@@ -40,41 +40,7 @@ public class BurrowsWheeler {
     }
 
 
-    private static String parse(int origin,char[] unorderedData,char[] orderedData, int deep){
-        int orderedcount = 0;
-        int unorderedcount = 0;
-        String result = null;
-        System.out.println("Origin: " +  origin);
 
-        result = Character.toString(orderedData[origin]);
-
-        //count how many chars deep the current letter is
-        for (int i = 0; i <= origin; i++){
-            if (orderedData[origin] == orderedData[i]) {
-                orderedcount++;
-                System.out.println("Count incremented to: " + orderedcount);
-            }
-        }
-
-        //count that many chars down in unordered list to find the next char
-        for (int i = 0; i < unorderedData.length; i++){
-            if (orderedData[origin] == unorderedData[i]) {
-                unorderedcount++;
-                System.out.println("Count2 incremented to: " + unorderedcount);
-            }
-
-            if (unorderedcount == orderedcount){//if at correct location for next char
-                if (deep < unorderedData.length){
-                    System.out.println("called parse");
-                    deep++;
-                    result += parse(i,unorderedData,orderedData,deep);
-                }
-                System.out.println("Result: "+ result);
-                break;
-            }
-        }
-        return result;
-    }
 
     // apply Burrows-Wheeler inverse transform,
     // reading from standard input and writing to standard output
@@ -83,15 +49,54 @@ public class BurrowsWheeler {
 
         String s = BinaryStdIn.readString();
 
+        //Have one copy of sorted data one copy of unsorted
         char[] unorderedData = s.toCharArray();
         char[] orderedData = s.toCharArray();
-        System.out.println("Unsorted: "+unorderedData);
         Arrays.sort(orderedData);
-        System.out.println("Sorted: "+orderedData);
+        int deep = 0;
+        String result = "";
+        int curOrigin = origin;
+        while(deep<unorderedData.length) {
+
+            int orderedcount = 0;
+            int unorderedcount = 0;
+            result += Character.toString(orderedData[curOrigin]);//set result to be the current place of the origin pointer
+            //System.out.println("Origin: " +  curOrigin);
 
 
-        String result = parse(origin,unorderedData,orderedData,1);
+            //count how many chars deep the current letter is
+            for (int i = 0; i <= curOrigin; i++) {
+                if (orderedData[curOrigin] == orderedData[i]) {
+                    orderedcount++;
+                    //System.out.println("Count incremented to: " + orderedcount);
+                }
+            }
+
+            //count that many chars down in unordered list to find the next char
+            for (int i = 0; i < unorderedData.length; i++) {
+                if (orderedData[curOrigin] == unorderedData[i]) {
+                    unorderedcount++;
+                    //System.out.println("Count2 incremented to: " + unorderedcount);
+                }
+
+                if (unorderedcount == orderedcount) {//if at correct location for next character in sequence
+                    if (deep < unorderedData.length) {
+                        //System.out.println("called parse");
+                        deep++;
+                        curOrigin = i;
+                    }
+                    //System.out.println("Result: "+ result);
+                    break;
+                }
+            }
+        }
+
         System.out.println("Result: " + result);
+
+        BinaryStdOut.write(result);
+
+        BinaryStdOut.flush();
+        BinaryStdOut.close();
     }
 
     // if args[0] is "-", apply Burrows-Wheeler transform
