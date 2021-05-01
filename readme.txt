@@ -28,9 +28,9 @@ Chose to use Java libraries Arrays.sort class method. It is efficient, avoids th
 
 Algorithm       Compression time    Expansion time           Compression ratio
 ------------------------------------------------------------------------------
-My program
-Huffman alone                                         0.560 (667651 / 1191463)
-gzip                            
+My program      1 seconds          600 seconds              0.34(406kb/1164kb)
+Huffman alone    1 second           .5 sec                0.560 (667651 / 1191463)
+gzip          0.1 second            2secs                   0.38(445kb/1164kb)
 
 See the Checklist for Bash commands to compress/expand.
 
@@ -78,7 +78,7 @@ None that we are aware of
 /* *****************************************************************************
  *  Describe any serious problems you encountered.                    
  **************************************************************************** */
-Prior to adjustments, we had a StackOverFlow error when testing mobydick.txt
+Prior to adjustments, we had a StackOverFlow error when testing mobydick.txt when using recursion
 
 
 /* *****************************************************************************
